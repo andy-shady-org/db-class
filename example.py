@@ -58,7 +58,7 @@ class DeviceTable(object):
         rec = db(db.devices.name == name).select().first()
         
         # django
-        rec = Devices.objects.filter(name=name).first()
+        # rec = Devices.objects.filter(name=name).first()
         if not rec:
             return None
         s = DeviceTable()
@@ -73,10 +73,12 @@ class DeviceTable(object):
                 raise DuplicateNameError('An device with MGMT Address {0} already exists'.format(self.mgmt_address))
             if db(db.devices.name == self.name).count() > 0:
                 raise DuplicateNameError('An device with name {0} already exists'.format(self.name))
+            
+            # web2py implementation
             rec_id = db.devices.insert(name=self.name, is_enabled=1 if self.is_enabled else 0,
                                                    mgmt_address=self.mgmt_address,
                                                    username=self.username, password=self.password)
-            current.db.commit()
+            db.commit()
             self.db_id = rec_id
             return True
         else:
