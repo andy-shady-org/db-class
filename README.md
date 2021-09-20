@@ -31,6 +31,7 @@ so, for example, if I had a sites table, i may want to represent that relationsh
   ```
   
   I would then add site to the to_json() method:
+    
     ```python
        site=site.to_json() is site else None
     ```
