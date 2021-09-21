@@ -33,7 +33,7 @@ so, for example, if I had a sites table, i may want to represent that relationsh
   I would then add site to the to_json() method:
     
   ```python
-     site=site.to_json() if site else None
+     site=self.site.to_json() if self.site else None
   ```
     
   this would allow me to dynamically load the entire record for a site, if required, which would might be an arg to my GET REST call.
